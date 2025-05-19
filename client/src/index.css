@@ -1,0 +1,1521 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ... your other global styles ... */
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafb; /* Light gray background */
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-md text-sm font-medium;
+}
+
+.btn-primary {
+  @apply bg-blue-500 text-white hover:bg-blue-600;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
+}
+.dark body {
+  background-color: #0f172a; /* Dark gray background for dark mode */
+}
+/* ... rest of your global styles (from previous responses) ... */
+
+/* Styles for the suggestion dropdown */
+.suggestion-dropdown {
+  @apply absolute z-10 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 mt-1 rounded-md shadow-lg;
+}
+
+.suggestion-item {
+  @apply px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer;
+}
+body {
+  font-family: "Inter", sans-serif; /* Or 'Roboto', sans-serif; */
+}
+/* index.css */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafb; /* Light gray background */
+}
+
+.dark body {
+  background-color: #1f2937; /* Dark gray background for dark mode */
+}
+
+/* General card styling */
+.card {
+  border-radius: 0.5rem; /* Rounded corners for cards */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+}
+
+.dark .card {
+  background-color: #2d3748; /* Darker card background in dark mode */
+}
+
+/* Scrollbar styling (optional) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* Sidebar.css or in a styled-component */
+.sidebar {
+  width: 256px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 1.5rem; /* 24px in rem */
+  overflow-y: auto;
+}
+
+.dark .sidebar {
+  background-color: #1f2937;
+  border-right: 1px solid #374151;
+}
+
+.sidebar h1 {
+  font-size: 1.5rem; /* 24px in rem */
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 2rem; /* 32px in rem */
+}
+
+.dark .sidebar h1 {
+  color: #f9fafb;
+}
+
+.sidebar h2 {
+  font-size: 0.875rem; /* 14px in rem */
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem; /* 12px in rem */
+}
+
+.dark .sidebar h2 {
+  color: #d1d5db;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 12px in rem */
+  color: #374151;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem; /* 6px in rem */
+  text-decoration: none;
+}
+
+.dark .sidebar a {
+  color: #d1d5db;
+}
+
+.sidebar a:hover {
+  background-color: #f3f4f6;
+}
+
+.dark .sidebar a:hover {
+  background-color: #374151;
+}
+
+.sidebar svg {
+  width: 1.25rem; /* 20px in rem */
+  height: 1.25rem;
+}
+/* TopBar.css or in a styled-component */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem; /* 16px in rem */
+  margin-bottom: 2rem;
+}
+
+.topbar h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.dark .topbar h2 {
+  color: #f9fafb;
+}
+/* IdeaInputForm.css or in a styled-component */
+.idea-form .card {
+  background-color: #ffffff;
+  border: none;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.dark .idea-form .card {
+  background-color: #2d3748;
+}
+
+.idea-form label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.dark .idea-form label {
+  color: #d1d5db;
+}
+
+.idea-form textarea {
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.dark .idea-form textarea {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #f9fafb;
+}
+
+.idea-form button {
+  width: 100%;
+  background-color: #6366f1; /* Updated button color */
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.dark .idea-form button {
+  background-color: #4f46e5; /* Darker button color in dark mode */
+}
+
+.idea-form button:hover {
+  background-color: #4f46e5; /* Darker shade on hover */
+}
+
+.dark .idea-form button:hover {
+  background-color: #4338ca;
+}
+
+.idea-form button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.idea-form button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+/* StrategicOverview.css */
+.strategic-overview .card {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.strategic-overview .card-header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .strategic-overview .card-header {
+  border-bottom-color: #374151;
+}
+
+.strategic-overview .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.dark .strategic-overview .card-title {
+  color: #f9fafb;
+}
+
+.strategic-overview .card-title svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #6b7280;
+}
+
+.dark .strategic-overview .card-title svg {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-list {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  margin-bottom: 2rem;
+}
+
+.strategic-overview .tabs-trigger {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.dark .strategic-overview .tabs-trigger {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-trigger:hover {
+  background-color: #f3f4f6;
+}
+
+.dark .strategic-overview .tabs-trigger:hover {
+  background-color: #374151;
+}
+
+.strategic-overview .tabs-trigger[data-state="active"] {
+  color: #6366f1;
+  border-bottom-color: #6366f1;
+}
+
+.dark .strategic-overview .tabs-trigger[data-state="active"] {
+  color: #4f46e5;
+  border-bottom-color: #4f46e5;
+}
+
+.strategic-overview .tabs-content {
+  padding: 1rem 0;
+}
+
+.strategic-overview .tabs-content .card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.dark .strategic-overview .tabs-content .card {
+  background-color: #2d3748;
+  border-color: #374151;
+}
+
+.strategic-overview .tabs-content .card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.dark .strategic-overview .tabs-content .card-title {
+  color: #f9fafb;
+}
+
+.strategic-overview .tabs-content .card-content p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.dark .strategic-overview .tabs-content .card-content p {
+  color: #d1d5db;
+}
+/* Add styles for other elements within StrategicOverview as needed */
+@layer base {
+  :root {
+    --background: #000;
+    --foreground: #fff;
+
+    --muted: #666;
+    --muted-foreground: #eee;
+
+    --accent: #eee;
+    --accent-foreground: #000;
+
+    --popover: #000;
+    --popover-foreground: #eee;
+
+    --border: #333;
+    --input: #333;
+
+    --card: #000;
+    --card-foreground: #fff;
+
+    --primary: #fff;
+    --primary-foreground: #000;
+
+    --secondary: #ddd;
+    --secondary-foreground: #000;
+
+    --destructive: #999;
+    --destructive-foreground: #fff;
+
+    --ring: #333;
+
+    --radius: 0.75rem;
+  }
+}
+
+/* Custom gradients and effects */
+.glass-effect {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.gradient-border {
+  background: linear-gradient(
+    45deg,
+    rgba(123, 31, 162, 0.5),
+    rgba(103, 58, 183, 0.5),
+    rgba(244, 143, 177, 0.5)
+  );
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hover-card-effect {
+  transition: all 0.3s ease;
+}
+
+.hover-card-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* index.css */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: antialiased;
+  background-color: #f9fafb; /* Light gray background */
+}
+
+.dark body {
+  background-color: #0f172a; /* Dark gray background for dark mode */
+}
+
+/* General card styling */
+.card {
+  border-radius: 0.5rem; /* Rounded corners for cards */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+}
+
+.dark .card {
+  background-color: #272829; /* Darker card background in dark mode */
+}
+
+/* Scrollbar styling (optional) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Add styles for other global elements as needed */
+
+/* Custom styles for h1, h2, h3, etc. */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212529;
+}
+
+.dark h1 {
+  color: #e5e7eb;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #212529;
+}
+
+.dark h2 {
+  color: #e5e7eb;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #212529;
+}
+
+.dark h3 {
+  color: #e5e7eb;
+}
+
+h4 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #212529;
+}
+
+.dark h4 {
+  color: #e5e7eb;
+}
+
+/* Add styles for links, buttons, etc. as needed */
+
+/* General styles for text */
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #212529; /* Adjust as needed */
+}
+
+.dark p {
+  color: #d1d5db; /* Adjust as needed */
+}
+
+/* Styles for icons */
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.dark .icon {
+  color: #9ca3af;
+}
+
+/* Sidebar.css or in a styled-component */
+.sidebar {
+  width: 256px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 1.5rem; /* 24px in rem */
+  overflow-y: auto;
+}
+
+.dark .sidebar {
+  background-color: #1f2937;
+  border-right: 1px solid #374151;
+}
+
+.sidebar h1 {
+  font-size: 1.5rem; /* 24px in rem */
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 2rem; /* 32px in rem */
+}
+
+.dark .sidebar h1 {
+  color: #f9fafb;
+}
+
+.sidebar h2 {
+  font-size: 0.875rem; /* 14px in rem */
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem; /* 12px in rem */
+}
+
+.dark .sidebar h2 {
+  color: #d1d5db;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 12px in rem */
+  color: #374151;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem; /* 6px in rem */
+  text-decoration: none;
+}
+
+.dark .sidebar a {
+  color: #d1d5db;
+}
+
+.sidebar a:hover {
+  background-color: #f3f4f6;
+}
+
+.dark .sidebar a:hover {
+  background-color: #374151;
+}
+
+.sidebar svg {
+  width: 1.25rem; /* 20px in rem */
+  height: 1.25rem;
+}
+
+/* TopBar.css or in a styled-component */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.topbar h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.dark .topbar h2 {
+  color: #f9fafb;
+}
+
+/* IdeaInputForm.css */
+.idea-form .card {
+  background-color: #fff;
+  border: none;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.dark .idea-form .card {
+  background-color: #272829;
+}
+
+.idea-form label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.dark .idea-form label {
+  color: #d1d5db;
+}
+
+.idea-form textarea {
+  width: 100%;
+  min-height: 120px; /* Increase min-height */
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #111827;
+  margin-bottom: 1rem;
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.dark .idea-form textarea {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #f9fafb;
+}
+
+.idea-form button {
+  width: 100%;
+  background-color: #6366f1;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.dark .idea-form button {
+  background-color: #4f46e5;
+}
+
+.idea-form button:hover {
+  background-color: #4f46e5;
+}
+
+.dark .idea-form button:hover {
+  background-color: #4338ca;
+}
+
+.idea-form button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.idea-form button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+/* StrategicOverview.css */
+.strategic-overview .card {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.strategic-overview .card-header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .strategic-overview .card-header {
+  border-bottom-color: #374151;
+}
+
+.strategic-overview .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.dark .strategic-overview .card-title {
+  color: #f9fafb;
+}
+
+.strategic-overview .card-title svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #6b7280;
+}
+
+.dark .strategic-overview .card-title svg {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-list {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  margin-bottom: 2rem;
+}
+
+.strategic-overview .tabs-trigger {
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.dark .strategic-overview .tabs-trigger {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-trigger:hover {
+  background-color: #f3f4f6;
+}
+
+.dark .strategic-overview .tabs-trigger:hover {
+  background-color: #374151;
+}
+
+.strategic-overview .tabs-trigger[data-state="active"] {
+  color: #6366f1;
+  border-bottom-color: #6366f1;
+}
+
+.dark .strategic-overview .tabs-trigger[data-state="active"] {
+  color: #4f46e5;
+  border-bottom-color: #4f46e5;
+}
+
+.strategic-overview .tabs-content {
+  padding: 1rem 0;
+}
+
+.strategic-overview .tabs-content .card {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.dark .strategic-overview .tabs-content .card {
+  background-color: #272829;
+  border-color: #374151;
+}
+
+.strategic-overview .tabs-content .card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.dark .strategic-overview .tabs-content .card-title {
+  color: #f9fafb;
+}
+
+.strategic-overview .tabs-content .card-content p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.dark .strategic-overview .tabs-content .card-content p {
+  color: #d1d5db;
+}
+/* Add styles for other elements within StrategicOverview as needed */
+
+/* StrategicOverview.css */
+
+/* ... other styles ... */
+
+/* Summary section */
+.strategic-overview .tabs-content[value="summary"] .card {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dark .strategic-overview .tabs-content[value="summary"] .card {
+  background-color: #272829;
+  border-color: #374151;
+}
+
+.strategic-overview .tabs-content[value="summary"] .card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.dark .strategic-overview .tabs-content[value="summary"] .card-title {
+  color: #f9fafb;
+}
+
+.strategic-overview .tabs-content[value="summary"] .card-content p {
+  font-size: 1.125rem;
+  color: #374151;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.dark .strategic-overview .tabs-content[value="summary"] .card-content p {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-content[value="summary"] .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.strategic-overview .tabs-content[value="summary"] .grid > div {
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.dark .strategic-overview .tabs-content[value="summary"] .grid > div {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.strategic-overview .tabs-content[value="summary"] .grid h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.dark .strategic-overview .tabs-content[value="summary"] .grid h3 {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-content[value="summary"] .grid p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.dark .strategic-overview .tabs-content[value="summary"] .grid p {
+  color: #f9fafb;
+}
+
+/* Market section */
+.strategic-overview .tabs-content[value="market"] .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.strategic-overview .tabs-content[value="market"] .card-title svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #22c55e;
+}
+
+.strategic-overview .tabs-content[value="market"] .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.strategic-overview .tabs-content[value="market"] .grid > div {
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.dark .strategic-overview .tabs-content[value="market"] .grid > div {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.strategic-overview .tabs-content[value="market"] .grid h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.dark .strategic-overview .tabs-content[value="market"] .grid h3 {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-content[value="market"] .grid p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.dark .strategic-overview .tabs-content[value="market"] .grid p {
+  color: #d1d5db;
+}
+
+/* Action Plan section */
+.strategic-overview .tabs-content[value="action"] .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.strategic-overview .tabs-content[value="action"] .card-title svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #10b981;
+}
+
+.strategic-overview .tabs-content[value="action"] .space-y-4 > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.dark .strategic-overview .tabs-content[value="action"] .space-y-4 > div {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.strategic-overview .tabs-content[value="action"] .space-y-4 .font-bold {
+  font-size: 1.5rem;
+  color: #111827;
+}
+
+.dark .strategic-overview .tabs-content[value="action"] .space-y-4 .font-bold {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-content[value="action"] .space-y-4 p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.dark .strategic-overview .tabs-content[value="action"] .space-y-4 p {
+  color: #d1d5db;
+}
+
+/* Risks section */
+.strategic-overview .tabs-content[value="risks"] .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.strategic-overview .tabs-content[value="risks"] .card-title svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #f59e0b;
+}
+
+.strategic-overview .tabs-content[value="risks"] .space-y-4 > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.dark .strategic-overview .tabs-content[value="risks"] .space-y-4 > div {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.strategic-overview .tabs-content[value="risks"] .space-y-4 svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #f59e0b;
+}
+
+.strategic-overview .tabs-content[value="risks"] .space-y-4 p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.dark .strategic-overview .tabs-content[value="risks"] .space-y-4 p {
+  color: #d1d5db;
+}
+
+/* Revenue section */
+.strategic-overview .tabs-content[value="revenue"] .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.strategic-overview .tabs-content[value="revenue"] .card-title svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #a855f7;
+}
+
+.strategic-overview .tabs-content[value="revenue"] .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.strategic-overview .tabs-content[value="revenue"] .grid > div {
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.dark .strategic-overview .tabs-content[value="revenue"] .grid > div {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.strategic-overview .tabs-content[value="revenue"] .grid h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.dark .strategic-overview .tabs-content[value="revenue"] .grid h3 {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-content[value="revenue"] .grid p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.dark .strategic-overview .tabs-content[value="revenue"] .grid p {
+  color: #d1d5db;
+}
+
+/* Competition section */
+.strategic-overview .tabs-content[value="competition"] .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.strategic-overview .tabs-content[value="competition"] .card-title svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #6366f1;
+}
+
+.strategic-overview .tabs-content[value="competition"] .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.strategic-overview .tabs-content[value="competition"] .grid > div {
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.dark .strategic-overview .tabs-content[value="competition"] .grid > div {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.strategic-overview .tabs-content[value="competition"] .grid h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.dark .strategic-overview .tabs-content[value="competition"] .grid h4 {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-content[value="competition"] .grid ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.strategic-overview .tabs-content[value="competition"] .grid li {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.dark .strategic-overview .tabs-content[value="competition"] .grid li {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-content[value="competition"] .mt-6 {
+  margin-top: 1.5rem;
+}
+
+.strategic-overview .tabs-content[value="competition"] .mt-6 p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.dark .strategic-overview .tabs-content[value="competition"] .mt-6 p {
+  color: #d1d5db;
+}
+
+/* Next Steps section */
+.strategic-overview .tabs-content[value="next"] .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.strategic-overview .tabs-content[value="next"] .card-title svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #eab308;
+}
+
+.strategic-overview .tabs-content[value="next"] .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.strategic-overview .tabs-content[value="next"] .grid > div {
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.dark .strategic-overview .tabs-content[value="next"] .grid > div {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.strategic-overview .tabs-content[value="next"] .grid h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.dark .strategic-overview .tabs-content[value="next"] .grid h4 {
+  color: #d1d5db;
+}
+
+.strategic-overview .tabs-content[value="next"] .grid ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.strategic-overview .tabs-content[value="next"] .grid li {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.dark .strategic-overview .tabs-content[value="next"] .grid li {
+  color: #d1d5db;
+}
+/* ValidationScore.css */
+.validation-score .card {
+  background-color: #fff;
+  border: none;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dark .validation-score .card {
+  background-color: #272829;
+}
+
+.validation-score .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.dark .validation-score .card-title {
+  color: #f9fafb;
+}
+
+.validation-score .card-title svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #eab308;
+}
+
+.validation-score .feasibility-analysis {
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.dark .validation-score .feasibility-analysis {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.validation-score .feasibility-analysis h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.dark .validation-score .feasibility-analysis h4 {
+  color: #d1d5db;
+}
+
+.validation-score .score-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.validation-score .score-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.dark .validation-score .score-label {
+  color: #d1d5db;
+}
+
+.validation-score .score-value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.validation-score .score-value.high {
+  color: #22c55e;
+}
+
+.validation-score .score-value.low {
+  color: #ef4444;
+}
+
+.validation-score .recommendations li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.dark .validation-score .recommendations li {
+  color: #d1d5db;
+}
+
+.validation-score .recommendations svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #22c55e;
+} /* MarketAnalysisCharts.css */
+.market-charts .card {
+  background-color: #fff;
+  border: none;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dark .market-charts .card {
+  background-color: #272829;
+}
+
+.market-charts .card-title {
+  display: flex;
+  align-items: center;
+}
+/* General Component Styles */
+.section {
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+}
+
+.dark .card {
+  background-color: #272829; /* Updated dark card background */
+  border-color: #374151;
+}
+
+.card-header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .card-header {
+  border-bottom-color: #374151;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.dark .card-title {
+  color: #f9fafb;
+}
+
+.card-title svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #6b7280;
+}
+
+.dark .card-title svg {
+  color: #d1d5db;
+}
+
+.card-content {
+  padding-top: 1rem;
+}
+
+/* ... other component-specific styles */
+/* MVPRoadmap.css */
+#mvp .card {
+  background-color: #fff;
+  border: none;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dark #mvp .card {
+  background-color: #272829;
+}
+
+#mvp .card-header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark #mvp .card-header {
+  border-bottom-color: #374151;
+}
+
+#mvp .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.dark #mvp .card-title {
+  color: #f9fafb;
+}
+
+#mvp .card-title svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #6366f1;
+}
+
+#mvp .card-content h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.dark #mvp .card-content h3 {
+  color: #f9fafb;
+}
+
+#mvp .card-content p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.dark #mvp .card-content p {
+  color: #d1d5db;
+}
+
+#mvp .card-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#mvp .card-content ul li {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.dark #mvp .card-content ul li {
+  color: #d1d5db;
+}
+
+#mvp .card-content .space-y-4 h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.dark #mvp .card-content .space-y-4 h4 {
+  color: #f9fafb;
+}
+
+#mvp .card-content .space-y-4 ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#mvp .card-content .space-y-4 ul li .w-4 {
+  width: 1rem;
+}
+
+#mvp .card-content .space-y-4 ul li .h-4 {
+  height: 1rem;
+}

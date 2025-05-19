@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["./src/components/*"],  //Adjust paths if needed
+      "@/lib/*": ["./src/lib/*"] // Add this if you are using the utils alias.
+    }
+  },
+  "include": ["src"]
+}
