@@ -25,7 +25,7 @@ function App() {
   };
 
   return (
-    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="flex flex-col min-h-screen font-['Inter_variable_Text_Thin'] bg-gray-100 dark:bg-black">
         <Navbar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
         <main className="flex-grow p-6">
