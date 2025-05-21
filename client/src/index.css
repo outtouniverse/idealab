@@ -6,438 +6,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ... your other global styles ... */
-
-body {
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f9fafb; /* Light gray background */
-}
-
-.container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
-.btn {
-  @apply px-4 py-2 rounded-md text-sm font-medium;
-}
-
-.btn-primary {
-  @apply bg-blue-500 text-white hover:bg-blue-600;
-}
-
-.btn-secondary {
-  @apply bg-gray-200 text-gray-700 hover:bg-gray-300;
-}
-.dark body {
-  background-color: #0f172a; /* Dark gray background for dark mode */
-}
-/* ... rest of your global styles (from previous responses) ... */
-
-/* Styles for the suggestion dropdown */
-.suggestion-dropdown {
-  @apply absolute z-10 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 mt-1 rounded-md shadow-lg;
-}
-
-.suggestion-item {
-  @apply px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer;
-}
-body {
-  font-family: "Inter", sans-serif; /* Or 'Roboto', sans-serif; */
-}
-/* index.css */
-body {
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f9fafb; /* Light gray background */
-}
-
-.dark body {
-  background-color: #1f2937; /* Dark gray background for dark mode */
-}
-
-/* General card styling */
-.card {
-  border-radius: 0.5rem; /* Rounded corners for cards */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); /* Subtle shadow */
-}
-
-.dark .card {
-  background-color: #2d3748; /* Darker card background in dark mode */
-}
-
-/* Scrollbar styling (optional) */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-/* Sidebar.css or in a styled-component */
-.sidebar {
-  width: 256px;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #ffffff;
-  border-right: 1px solid #e5e7eb;
-  padding: 1.5rem; /* 24px in rem */
-  overflow-y: auto;
-}
-
-.dark .sidebar {
-  background-color: #1f2937;
-  border-right: 1px solid #374151;
-}
-
-.sidebar h1 {
-  font-size: 1.5rem; /* 24px in rem */
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 2rem; /* 32px in rem */
-}
-
-.dark .sidebar h1 {
-  color: #f9fafb;
-}
-
-.sidebar h2 {
-  font-size: 0.875rem; /* 14px in rem */
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #6b7280;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem; /* 12px in rem */
-}
-
-.dark .sidebar h2 {
-  color: #d1d5db;
-}
-
-.sidebar a {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem; /* 12px in rem */
-  color: #374151;
-  padding: 0.75rem 1rem;
-  border-radius: 0.375rem; /* 6px in rem */
-  text-decoration: none;
-}
-
-.dark .sidebar a {
-  color: #d1d5db;
-}
-
-.sidebar a:hover {
-  background-color: #f3f4f6;
-}
-
-.dark .sidebar a:hover {
-  background-color: #374151;
-}
-
-.sidebar svg {
-  width: 1.25rem; /* 20px in rem */
-  height: 1.25rem;
-}
-/* TopBar.css or in a styled-component */
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem; /* 16px in rem */
-  margin-bottom: 2rem;
-}
-
-.topbar h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #111827;
-}
-
-.dark .topbar h2 {
-  color: #f9fafb;
-}
-/* IdeaInputForm.css or in a styled-component */
-.idea-form .card {
-  background-color: #ffffff;
-  border: none;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-}
-
-.dark .idea-form .card {
-  background-color: #2d3748;
-}
-
-.idea-form label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 0.5rem;
-}
-
-.dark .idea-form label {
-  color: #d1d5db;
-}
-
-.idea-form textarea {
-  width: 100%;
-  min-height: 100px;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.375rem;
-  padding: 0.75rem;
-  font-size: 1rem;
-  color: #111827;
-  margin-bottom: 1rem;
-}
-
-.dark .idea-form textarea {
-  background-color: #1f2937;
-  border-color: #374151;
-  color: #f9fafb;
-}
-
-.idea-form button {
-  width: 100%;
-  background-color: #6366f1; /* Updated button color */
-  color: #ffffff;
-  border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.375rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-}
-
-.dark .idea-form button {
-  background-color: #4f46e5; /* Darker button color in dark mode */
-}
-
-.idea-form button:hover {
-  background-color: #4f46e5; /* Darker shade on hover */
-}
-
-.dark .idea-form button:hover {
-  background-color: #4338ca;
-}
-
-.idea-form button:disabled {
-  background-color: #9ca3af;
-  cursor: not-allowed;
-}
-
-.idea-form button svg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-/* StrategicOverview.css */
-.strategic-overview .card {
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
-}
-
-.strategic-overview .card-header {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.dark .strategic-overview .card-header {
-  border-bottom-color: #374151;
-}
-
-.strategic-overview .card-title {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #111827;
-}
-
-.dark .strategic-overview .card-title {
-  color: #f9fafb;
-}
-
-.strategic-overview .card-title svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  color: #6b7280;
-}
-
-.dark .strategic-overview .card-title svg {
-  color: #d1d5db;
-}
-
-.strategic-overview .tabs-list {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  margin-bottom: 2rem;
-}
-
-.strategic-overview .tabs-trigger {
-  background-color: transparent;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-}
-
-.dark .strategic-overview .tabs-trigger {
-  color: #d1d5db;
-}
-
-.strategic-overview .tabs-trigger:hover {
-  background-color: #f3f4f6;
-}
-
-.dark .strategic-overview .tabs-trigger:hover {
-  background-color: #374151;
-}
-
-.strategic-overview .tabs-trigger[data-state="active"] {
-  color: #6366f1;
-  border-bottom-color: #6366f1;
-}
-
-.dark .strategic-overview .tabs-trigger[data-state="active"] {
-  color: #4f46e5;
-  border-bottom-color: #4f46e5;
-}
-
-.strategic-overview .tabs-content {
-  padding: 1rem 0;
-}
-
-.strategic-overview .tabs-content .card {
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-}
-
-.dark .strategic-overview .tabs-content .card {
-  background-color: #2d3748;
-  border-color: #374151;
-}
-
-.strategic-overview .tabs-content .card-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #111827;
-  margin-bottom: 1rem;
-}
-
-.dark .strategic-overview .tabs-content .card-title {
-  color: #f9fafb;
-}
-
-.strategic-overview .tabs-content .card-content p {
-  font-size: 1rem;
-  color: #374151;
-  line-height: 1.5;
-}
-
-.dark .strategic-overview .tabs-content .card-content p {
-  color: #d1d5db;
-}
-/* Add styles for other elements within StrategicOverview as needed */
-@layer base {
-  :root {
-    --background: #000;
-    --foreground: #fff;
-
-    --muted: #666;
-    --muted-foreground: #eee;
-
-    --accent: #eee;
-    --accent-foreground: #000;
-
-    --popover: #000;
-    --popover-foreground: #eee;
-
-    --border: #333;
-    --input: #333;
-
-    --card: #000;
-    --card-foreground: #fff;
-
-    --primary: #fff;
-    --primary-foreground: #000;
-
-    --secondary: #ddd;
-    --secondary-foreground: #000;
-
-    --destructive: #999;
-    --destructive-foreground: #fff;
-
-    --ring: #333;
-
-    --radius: 0.75rem;
-  }
-}
-
-/* Custom gradients and effects */
-.glass-effect {
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.125);
-}
-
-.gradient-border {
-  background: linear-gradient(
-    45deg,
-    rgba(123, 31, 162, 0.5),
-    rgba(103, 58, 183, 0.5),
-    rgba(244, 143, 177, 0.5)
-  );
-  background-size: 200% 200%;
-  animation: gradient 15s ease infinite;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.hover-card-effect {
-  transition: all 0.3s ease;
-}
-
-.hover-card-effect:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-}
 
 /* index.css */
 body {
@@ -445,7 +13,7 @@ body {
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: antialiased;
-  background-color: #f9fafb; /* Light gray background */
+  background-color: #000; /* Light gray background */
 }
 
 .dark body {
@@ -573,7 +141,7 @@ p {
 }
 
 .dark .sidebar h1 {
-  color: #f9fafb;
+  color: #000;
 }
 
 .sidebar h2 {
@@ -632,7 +200,7 @@ p {
 }
 
 .dark .topbar h2 {
-  color: #f9fafb;
+  color: #000;
 }
 
 /* IdeaInputForm.css */
@@ -673,7 +241,7 @@ p {
 .dark .idea-form textarea {
   background-color: #1f2937;
   border-color: #374151;
-  color: #f9fafb;
+  color: #000;
 }
 
 .idea-form button {
@@ -738,7 +306,7 @@ p {
 }
 
 .dark .strategic-overview .card-title {
-  color: #f9fafb;
+  color: #000;
 }
 
 .strategic-overview .card-title svg {
@@ -815,7 +383,7 @@ p {
 }
 
 .dark .strategic-overview .tabs-content .card-title {
-  color: #f9fafb;
+  color: #000;
 }
 
 .strategic-overview .tabs-content .card-content p {
@@ -856,7 +424,7 @@ p {
 }
 
 .dark .strategic-overview .tabs-content[value="summary"] .card-title {
-  color: #f9fafb;
+  color: #000;
 }
 
 .strategic-overview .tabs-content[value="summary"] .card-content p {
@@ -907,7 +475,7 @@ p {
 }
 
 .dark .strategic-overview .tabs-content[value="summary"] .grid p {
-  color: #f9fafb;
+  color: #000;
 }
 
 /* Market section */
@@ -1263,7 +831,7 @@ p {
 }
 
 .dark .validation-score .card-title {
-  color: #f9fafb;
+  color: #000;
 }
 
 .validation-score .card-title svg {
@@ -1397,7 +965,7 @@ p {
 }
 
 .dark .card-title {
-  color: #f9fafb;
+  color: #000;
 }
 
 .card-title svg {
@@ -1448,7 +1016,7 @@ p {
 }
 
 .dark #mvp .card-title {
-  color: #f9fafb;
+  color: #000;
 }
 
 #mvp .card-title svg {
@@ -1465,7 +1033,7 @@ p {
 }
 
 .dark #mvp .card-content h3 {
-  color: #f9fafb;
+  color: #000;
 }
 
 #mvp .card-content p {
@@ -1503,7 +1071,7 @@ p {
 }
 
 .dark #mvp .card-content .space-y-4 h4 {
-  color: #f9fafb;
+  color: #000;
 }
 
 #mvp .card-content .space-y-4 ul li {
