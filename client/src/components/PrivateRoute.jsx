@@ -5,7 +5,7 @@ const PrivateRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {
-    fetch("https://idealab-ax37.vercel.app//auth/user", { credentials: "include" })
+    fetch("https://idealab-ax37.vercel.app/auth/user", { credentials: "include" })
       .then(res => res.json())
       .then(data => setIsAuthenticated(!!data.user))
       .catch(() => setIsAuthenticated(false));

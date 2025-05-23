@@ -20,7 +20,7 @@ export default function IdeaLabDetailsPage() {
   const [financialData, setFinancialData] = useState(null);
 
   useEffect(() => {
-    fetch(`https://idealab-ax37.vercel.app//idealab/${id}`, {
+    fetch(`https://idealab-ax37.vercel.app/idealab/${id}`, {
       credentials: "include",
     })
       .then((res) => res.json())
