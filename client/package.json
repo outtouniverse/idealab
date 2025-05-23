@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "shadcn": "shadcn-ui"
@@ -70,6 +70,7 @@
     "@eslint/js": "^9.17.0",
     "@shadcn/ui": "^0.0.4",
     "@types/react": "^18.0.0",
+    "@types/react-day-picker": "^5.2.1",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.20",
