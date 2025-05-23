@@ -7,7 +7,7 @@ function LoginPage({ onLogin }) {
 
   const handleGoogleLogin = () => {
     // Redirect to Express backend to trigger Google OAuth
-    window.location.assign("http://localhost:3000/auth/google");
+    window.location.assign("https://idealab-ax37.vercel.app//auth/google");
   };
 
   return (

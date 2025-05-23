@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     // Check authentication status when the app loads
-    fetch("http://localhost:3000/auth/user", {
+    fetch("https://idealab-ax37.vercel.app//auth/user", {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -37,12 +37,12 @@ function App() {
   }, []);
 
   const handleLogin = () => {
-    window.location.assign("http://localhost:3000/auth/google");
+    window.location.assign("https://idealab-ax37.vercel.app//auth/google");
   };
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:3000/auth/logout", {
+      const response = await fetch("https://idealab-ax37.vercel.app//auth/logout", {
         method: "POST",
         credentials: "include",
       });

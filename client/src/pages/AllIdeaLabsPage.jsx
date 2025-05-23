@@ -7,7 +7,7 @@ export default function AllIdeaLabsPage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/idealab/all", {
+    fetch("https://idealab-ax37.vercel.app//idealab/all", {
       credentials: "include",
     })
       .then((res) => res.json())

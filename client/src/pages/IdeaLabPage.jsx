@@ -45,7 +45,7 @@ function IdeaLabPage() {
     // Store in DB first
     let newIdeaLabId = null;
     try {
-      const dbRes = await fetch("http://localhost:3000/idealab/new", {
+      const dbRes = await fetch("https://idealab-ax37.vercel.app//idealab/new", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -90,7 +90,7 @@ function IdeaLabPage() {
 
       // --- Save the output to the backend ---
       if (newIdeaLabId) {
-        const saveRes = await fetch(`http://localhost:3000/idealab/save-output/${newIdeaLabId}`, {
+        const saveRes = await fetch(`https://idealab-ax37.vercel.app//idealab/save-output/${newIdeaLabId}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
