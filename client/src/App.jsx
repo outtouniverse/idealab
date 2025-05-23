@@ -27,6 +27,9 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setIsAuthenticated(!!data.user);
+        if (data.user) {
+          navigate('/dashboard');
+        }
       })
       .catch(() => {
         setIsAuthenticated(false);
@@ -34,7 +37,7 @@ function App() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [navigate]);
 
   const handleLogin = () => {
     window.location.assign("https://idealab-ax37.vercel.app/auth/google");
@@ -84,7 +87,13 @@ function App() {
             />
             <Route
               path="/login"
-              element={<LoginPage onLogin={handleLogin} />}
+              element={
+                isAuthenticated ? (
+                  <Navigate to="/dashboard" replace />
+                ) : (
+                  <LoginPage onLogin={handleLogin} />
+                )
+              }
             />
             <Route path="/signup" element={<SignupPage />} />
             <Route

@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 function LoginPage({ onLogin }) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if user is already authenticated
+    fetch("https://idealab-ax37.vercel.app/auth/user", {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.user) {
+          navigate('/dashboard');
+        }
+      })
+      .catch(() => {
+        // Handle error
+      });
+  }, [navigate]);
 
   const handleGoogleLogin = () => {
     // Redirect to Express backend to trigger Google OAuth
