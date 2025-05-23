@@ -5,7 +5,7 @@ import {
   flexRender,
   createColumnHelper,
 } from "@tanstack/react-table";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/Card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { motion } from "framer-motion";
 import { DollarSign, TrendingUp, Clock, Target } from "lucide-react";
 

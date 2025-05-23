@@ -1,4 +1,4 @@
-import { Card, CardContent } from "../components/ui/Card";
+import { Card, CardContent } from "../components/ui/card";
 import { Loader2 } from "lucide-react";
 
 function LoadingOverlay({ loading, loadingMessage }) {

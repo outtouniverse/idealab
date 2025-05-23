@@ -1,6 +1,6 @@
 // FinancialAnalysisInput.jsx
 import React, { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/Card"; // Import your Card components
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"; // Import your Card components
 
 const FinancialAnalysisInput = ({ onAnalyze }) => {
   const [formData, setFormData] = useState({

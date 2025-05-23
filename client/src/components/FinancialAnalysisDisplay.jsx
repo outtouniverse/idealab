@@ -3,7 +3,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "../components/ui/Card";
+} from "../components/ui/card";
 import { DollarSign } from "lucide-react";
 
 function FinancialAnalysisDisplay({ data }) {

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/Card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { CheckCircle, Lightbulb } from "lucide-react";
 
 function ValidationScore({ response }) {

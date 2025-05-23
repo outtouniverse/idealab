@@ -4,7 +4,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "../components/ui/Card";
+} from "../components/ui/card";
 import { Lightbulb } from "lucide-react";
 import Editor from "../components/Editor";
 import DownloadButton from "../components/DownloadButton";
