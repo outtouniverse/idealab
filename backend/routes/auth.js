@@ -15,10 +15,20 @@ router.get(
   }
 );
 
-// Logout
-router.get('/logout', (req, res) => {
-  req.logout(() => {
-    res.redirect('/');
+// Logout route
+router.post('/logout', (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).json({ success: false, error: 'Error logging out' });
+    }
+    // Clear the session cookie
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ success: false, error: 'Error destroying session' });
+      }
+      res.clearCookie('connect.sid');
+      res.json({ success: true });
+    });
   });
 });
 

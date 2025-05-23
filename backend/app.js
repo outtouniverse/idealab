@@ -14,9 +14,7 @@ const ideaLabRoutes = require('./routes/idealab');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
-
-// Allow requests from your frontend, and allow credentials (cookies)
+var app = express();// Allow requests from your frontend, and allow credentials (cookies)
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true,

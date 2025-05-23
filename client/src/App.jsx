@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
@@ -12,22 +12,64 @@ import PrivateRoute from "./components/PrivateRoute";
 import Navbar from "./components/Navbar"; // Import Navbar
 import { ThemeProvider } from "./components/ui/theme-provider";
 import IdeaLabDetailsPage from "./pages/IdeaLabDetailsPage";
+import DashboardNav from "./components/DashboardNav";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check authentication status when the app loads
+    fetch("http://localhost:3000/auth/user", {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setIsAuthenticated(!!data.user);
+      })
+      .catch(() => {
+        setIsAuthenticated(false);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   const handleLogin = () => {
     window.location.assign("http://localhost:3000/auth/google");
   };
 
-  const handleLogout = () => {
-    setIsAuthenticated(false);
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+      
+      if (response.ok) {
+        setIsAuthenticated(false);
+        navigate("/login");
+      } else {
+        console.error("Logout failed");
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="flex flex-col min-h-screen font-['Inter_variable_Text_Thin'] bg-gray-100 dark:bg-black">
-        <Navbar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+        {isAuthenticated ? (
+          <DashboardNav onLogout={handleLogout} />
+        ) : (
+          <Navbar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+        )}
         <main className="flex-grow p-6">
           <Routes>
             <Route
@@ -48,7 +90,7 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                <PrivateRoute>
+                <PrivateRoute isAuthenticated={isAuthenticated}>
                   <DashboardPage />
                 </PrivateRoute>
               }
@@ -80,7 +122,7 @@ function App() {
             <Route
               path="/idealab/:id"
               element={
-                <PrivateRoute>
+                <PrivateRoute isAuthenticated={isAuthenticated}>
                   <IdeaLabDetailsPage />
                 </PrivateRoute>
               }
@@ -88,7 +130,7 @@ function App() {
             <Route
               path="/idealabs"
               element={
-                <PrivateRoute>
+                <PrivateRoute isAuthenticated={isAuthenticated}>
                   <AllIdeaLabsPage />
                 </PrivateRoute>
               }
