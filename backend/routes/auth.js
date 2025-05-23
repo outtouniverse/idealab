@@ -3,15 +3,29 @@ const passport = require('passport');
 const router = express.Router();
 
 // Start Google OAuth
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/google', passport.authenticate('google', { 
+  scope: ['profile', 'email'],
+  prompt: 'select_account'
+}));
 
 // Google OAuth callback
 router.get(
   '/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
+  passport.authenticate('google', { 
+    failureRedirect: 'https://idealab-zeta.vercel.app/login',
+    session: true
+  }),
   (req, res) => {
-    // Redirect directly to dashboard after successful login
-    res.redirect('http://localhost:5173/dashboard');
+    // Set a cookie to indicate successful login
+    res.cookie('auth', 'true', {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    });
+    
+    // Redirect to dashboard
+    res.redirect('https://idealab-zeta.vercel.app/dashboard');
   }
 );
 
