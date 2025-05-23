@@ -47,11 +47,28 @@ router.post('/logout', (req, res) => {
   });
 });
 
-router.get('/user', (req, res) => {
-  if (req.isAuthenticated()) {
-    res.json({ user: req.user });
-  } else {
-    res.json({ user: null });
+// Add timeout handling to the user route
+router.get('/user', async (req, res) => {
+  try {
+    if (req.isAuthenticated()) {
+      // Set a timeout for the database operation
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Database operation timed out')), 5000);
+      });
+
+      // Race between the database operation and the timeout
+      const user = await Promise.race([
+        Promise.resolve(req.user),
+        timeoutPromise
+      ]);
+
+      res.json({ user });
+    } else {
+      res.json({ user: null });
+    }
+  } catch (error) {
+    console.error('Error in /user route:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
