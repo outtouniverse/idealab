@@ -38,7 +38,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI,
+      mongoUrl: "mongodb+srv://aakub1096:0ElXJBUfvDRIGfhV@cluster0.f7veylt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
       ttl: 14 * 24 * 60 * 60, // 14 days
       autoRemove: 'native',
       touchAfter: 24 * 3600 // 24 hours
@@ -78,14 +78,21 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// Update MongoDB connection with modern options
+// Update MongoDB connection with proper options
 mongoose.connect(process.env.MONGODB_URI, {
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
   maxPoolSize: 10,
   minPoolSize: 5,
   retryWrites: true,
-  w: 'majority'
+  w: 'majority',
+  ssl: true,
+  tls: true,
+  tlsAllowInvalidCertificates: false,
+  tlsAllowInvalidHostnames: false,
+  directConnection: false,
+  replicaSet: 'atlas-9vcknn-shard-0',
+  authSource: 'admin'
 })
 .then(() => console.log('MongoDB connected successfully'))
 .catch((err) => {
@@ -100,6 +107,28 @@ mongoose.connection.on('error', (err) => {
 
 mongoose.connection.on('disconnected', () => {
   console.log('MongoDB disconnected');
+});
+
+// Add reconnection logic
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB disconnected, attempting to reconnect...');
+  setTimeout(() => {
+    mongoose.connect(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+      maxPoolSize: 10,
+      minPoolSize: 5,
+      retryWrites: true,
+      w: 'majority',
+      ssl: true,
+      tls: true,
+      tlsAllowInvalidCertificates: false,
+      tlsAllowInvalidHostnames: false,
+      directConnection: false,
+      replicaSet: 'atlas-9vcknn-shard-0',
+      authSource: 'admin'
+    });
+  }, 5000);
 });
 
 // Add graceful shutdown
