@@ -4,8 +4,7 @@ const userSchema = new mongoose.Schema({
   googleId: {
     type: String,
     required: true,
-    unique: true,
-    index: true
+    unique: true
   },
   displayName: {
     type: String,
@@ -14,8 +13,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
-    index: true
+    unique: true
   },
   photo: String,
   createdAt: {
@@ -24,14 +22,9 @@ const userSchema = new mongoose.Schema({
   }
 }, {
   timestamps: true,
-  // Add these options for better performance
   bufferCommands: false,
   autoIndex: true
 });
-
-// Add indexes for frequently queried fields
-userSchema.index({ googleId: 1 });
-userSchema.index({ email: 1 });
 
 const User = mongoose.model('User', userSchema);
 

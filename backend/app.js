@@ -10,6 +10,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const ideaLabRoutes = require('./routes/idealab');
+const MongoStore = require('connect-mongo');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -36,6 +37,17 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+      ttl: 14 * 24 * 60 * 60, // 14 days
+      autoRemove: 'native',
+      touchAfter: 24 * 3600 // 24 hours
+    }),
+    cookie: {
+      secure: process.env.NODE_ENV === 'production',
+      httpOnly: true,
+      maxAge: 14 * 24 * 60 * 60 * 1000 // 14 days
+    }
   })
 );
 
@@ -66,17 +78,19 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// Update MongoDB connection with proper options
+// Update MongoDB connection with modern options
 mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
-  socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+  maxPoolSize: 10,
+  minPoolSize: 5,
+  retryWrites: true,
+  w: 'majority'
 })
 .then(() => console.log('MongoDB connected successfully'))
 .catch((err) => {
   console.error('MongoDB connection error:', err);
-  process.exit(1); // Exit if cannot connect to database
+  process.exit(1);
 });
 
 // Add connection error handling
