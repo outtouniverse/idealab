@@ -5,7 +5,8 @@ const router = express.Router();
 // Start Google OAuth
 router.get('/google', passport.authenticate('google', { 
   scope: ['profile', 'email'],
-  prompt: 'select_account'
+  prompt: 'select_account',
+  accessType: 'online'
 }));
 
 // Google OAuth callback
@@ -19,7 +20,7 @@ router.get(
     // Set a cookie to indicate successful login
     res.cookie('auth', 'true', {
       httpOnly: false,
-      secure: process.env.NODE_ENV === 'production',
+      secure: true,
       sameSite: 'lax',
       maxAge: 24 * 60 * 60 * 1000 // 24 hours
     });
