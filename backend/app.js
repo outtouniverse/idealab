@@ -51,7 +51,7 @@ app.use(
     cookie: {
       secure: true,
       httpOnly: true,
-      sameSite: 'none',
+      sameSite: 'lax',
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
       domain: '.vercel.app'
     }

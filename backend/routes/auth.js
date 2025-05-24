@@ -34,8 +34,7 @@ router.get(
       res.cookie('connect.sid', req.sessionID, {
         httpOnly: true,
         secure: true,
-        sameSite: 'none',
-        domain: '.vercel.app',
+        sameSite: 'lax',
         maxAge: 24 * 60 * 60 * 1000
       });
 
@@ -43,8 +42,7 @@ router.get(
       res.cookie('auth', 'true', {
         httpOnly: false,
         secure: true,
-        sameSite: 'none',
-        domain: '.vercel.app',
+        sameSite: 'lax',
         maxAge: 24 * 60 * 60 * 1000
       });
 
