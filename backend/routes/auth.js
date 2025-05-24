@@ -26,7 +26,7 @@ router.get(
     });
     
     // Redirect to dashboard
-    res.redirect('https://idealab-ax37.vercel.app/dashboard');
+    res.redirect('https://idealab-zeta.vercel.app/dashboard');
   }
 );
 
