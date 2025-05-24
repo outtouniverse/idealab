@@ -19,6 +19,8 @@ var app = express();// Allow requests from your frontend, and allow credentials 
 app.use(cors({
   origin: ['https://idealab-zeta.vercel.app', 'http://localhost:5173'],
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
 }));
 
 // view engine setup
@@ -50,7 +52,8 @@ app.use(
       secure: true,
       httpOnly: true,
       sameSite: 'none',
-      maxAge: 24 * 60 * 60 * 1000 // 24 hours
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+      domain: '.vercel.app'
     }
   })
 );

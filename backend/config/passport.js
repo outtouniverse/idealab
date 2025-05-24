@@ -34,11 +34,12 @@ passport.use(
   new GoogleStrategy(
     {
       ...googleAuth,
-      proxy: true
+      proxy: true,
+      passReqToCallback: true
     },
-    async (accessToken, refreshToken, profile, done) => {
+    async (req, accessToken, refreshToken, profile, done) => {
       try {
-        console.log('Google Profile:', profile); // Debug log
+        console.log('Google Profile:', profile);
         
         // Try to find the user
         let user = await User.findOne({ googleId: profile.id });
@@ -51,7 +52,16 @@ passport.use(
             email: profile.emails[0].value,
             photo: profile.photos[0].value,
           });
-          console.log('New user created:', user); // Debug log
+          console.log('New user created:', user);
+        }
+
+        // Force session save
+        if (req.session) {
+          req.session.save((err) => {
+            if (err) {
+              console.error('Session save error in strategy:', err);
+            }
+          });
         }
         
         return done(null, user);
