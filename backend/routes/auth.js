@@ -25,8 +25,8 @@ router.get(
       maxAge: 24 * 60 * 60 * 1000 // 24 hours
     });
     
-    // Redirect to dashboard with a force reload
-    res.redirect('https://idealab-zeta.vercel.app/dashboard?auth=true');
+    // Redirect to dashboard
+    res.redirect('https://idealab-zeta.vercel.app/dashboard');
   }
 );
 
