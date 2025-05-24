@@ -13,6 +13,7 @@ export default function DashboardPage() {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log('Auth response:', data);
         if (data && data.user) {
           setUser(data.user);
           // Fetch recent IdeaLabs after user is authenticated
@@ -27,10 +28,14 @@ export default function DashboardPage() {
             })
             .catch((err) => console.error("Failed to fetch recent IdeaLabs:", err));
         } else {
+          console.log('No user data, redirecting to login');
           navigate("/login");
         }
       })
-      .catch(() => navigate("/login"))
+      .catch((error) => {
+        console.error('Auth error:', error);
+        navigate("/login");
+      })
       .finally(() => setLoading(false));
   }, [navigate]);
 
