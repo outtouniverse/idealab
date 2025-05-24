@@ -37,23 +37,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "your-session-secret",
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI,
-      ttl: 14 * 24 * 60 * 60, // 14 days
-      autoRemove: 'native',
-      touchAfter: 24 * 3600, // 24 hours
-      crypto: {
-        secret: process.env.SESSION_SECRET || "your-session-secret"
-      }
+      ttl: 14 * 24 * 60 * 60
     }),
     cookie: {
       secure: true,
       httpOnly: true,
-      sameSite: 'lax',
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      domain: '.vercel.app'
+      maxAge: 24 * 60 * 60 * 1000
     }
   })
 );

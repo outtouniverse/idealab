@@ -8,17 +8,9 @@ export default function DashboardPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (!token) {
-      navigate('/login');
-      return;
-    }
-
-    // Verify token with backend
+    // Check authentication status
     fetch("https://idealab-ax37.vercel.app/auth/user", {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
+      credentials: "include"
     })
       .then((res) => res.json())
       .then((data) => {
@@ -36,13 +28,11 @@ export default function DashboardPage() {
             })
             .catch((err) => console.error("Failed to fetch recent IdeaLabs:", err));
         } else {
-          localStorage.removeItem('authToken');
           navigate('/login');
         }
       })
       .catch((error) => {
         console.error('Auth error:', error);
-        localStorage.removeItem('authToken');
         navigate('/login');
       })
       .finally(() => setLoading(false));

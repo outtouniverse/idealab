@@ -5,26 +5,14 @@ const User = require('../models/User');
 
 // User serialization (for session support)
 passport.serializeUser((user, done) => {
-  try {
-    console.log('Serializing user:', user.id);
-    done(null, user.id);
-  } catch (error) {
-    console.error('Serialize Error:', error);
-    done(error, null);
-  }
+  done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
   try {
-    console.log('Deserializing user:', id);
     const user = await User.findById(id);
-    if (!user) {
-      console.error('User not found during deserialization');
-      return done(null, false);
-    }
     done(null, user);
   } catch (err) {
-    console.error('Deserialize Error:', err);
     done(err, null);
   }
 });
@@ -32,41 +20,22 @@ passport.deserializeUser(async (id, done) => {
 // Google OAuth Strategy
 passport.use(
   new GoogleStrategy(
-    {
-      ...googleAuth,
-      proxy: true,
-      passReqToCallback: true
-    },
-    async (req, accessToken, refreshToken, profile, done) => {
+    googleAuth,
+    async (accessToken, refreshToken, profile, done) => {
       try {
-        console.log('Google Profile:', profile);
-        
-        // Try to find the user
         let user = await User.findOne({ googleId: profile.id });
         
         if (!user) {
-          // If not found, create a new user
           user = await User.create({
             googleId: profile.id,
             displayName: profile.displayName,
             email: profile.emails[0].value,
             photo: profile.photos[0].value,
           });
-          console.log('New user created:', user);
-        }
-
-        // Force session save
-        if (req.session) {
-          req.session.save((err) => {
-            if (err) {
-              console.error('Session save error in strategy:', err);
-            }
-          });
         }
         
         return done(null, user);
       } catch (err) {
-        console.error('Google Strategy Error:', err);
         return done(err, null);
       }
     }
