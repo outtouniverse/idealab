@@ -13,7 +13,5 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 module.exports = {
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: `${baseUrl}/auth/google/callback`,
-  proxy: true,
-  passReqToCallback: true
+  callbackURL: `${baseUrl}/auth/google/callback`
 };
