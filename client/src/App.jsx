@@ -28,7 +28,7 @@ function App() {
       .then((data) => {
         setIsAuthenticated(!!data.user);
         if (data.user) {
-          navigate('/dashboard');
+          window.location.href = "https://idealab-zeta.vercel.app/dashboard";
         }
       })
       .catch(() => {

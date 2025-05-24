@@ -29,12 +29,12 @@ export default function DashboardPage() {
             .catch((err) => console.error("Failed to fetch recent IdeaLabs:", err));
         } else {
           console.log('No user data, redirecting to login');
-          navigate("/login");
+          window.location.href = "https://idealab-zeta.vercel.app/login";
         }
       })
       .catch((error) => {
         console.error('Auth error:', error);
-        navigate("/login");
+        window.location.href = "https://idealab-zeta.vercel.app/login";
       })
       .finally(() => setLoading(false));
   }, [navigate]);

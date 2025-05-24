@@ -13,7 +13,7 @@ function LoginPage({ onLogin }) {
       .then((res) => res.json())
       .then((data) => {
         if (data.user) {
-          navigate('/dashboard');
+          window.location.href = "https://idealab-zeta.vercel.app/dashboard";
         }
       })
       .catch(() => {

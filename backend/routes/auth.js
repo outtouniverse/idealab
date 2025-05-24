@@ -13,7 +13,7 @@ router.get('/google', passport.authenticate('google', {
 router.get(
   '/google/callback',
   passport.authenticate('google', { 
-    failureRedirect: 'https://idealab-ax37.vercel.app/login',
+    failureRedirect: 'https://idealab-zeta.vercel.app/login',
     session: true
   }),
   (req, res) => {

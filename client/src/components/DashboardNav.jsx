@@ -15,7 +15,7 @@ function DashboardNav({ onLogout }) {
       
       if (response.ok) {
         onLogout();
-        navigate("/login");
+        window.location.href = "https://idealab-zeta.vercel.app/login";
       } else {
         console.error("Logout failed");
       }
