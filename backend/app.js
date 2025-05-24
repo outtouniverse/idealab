@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Session middleware
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret:"your-session-secret",
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
