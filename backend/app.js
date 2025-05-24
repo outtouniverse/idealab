@@ -35,8 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "your-session-secret",
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI,
       ttl: 14 * 24 * 60 * 60, // 14 days
@@ -50,7 +50,7 @@ app.use(
       secure: true,
       httpOnly: true,
       sameSite: 'none',
-      maxAge: 14 * 24 * 60 * 60 * 1000 // 14 days
+      maxAge: 24 * 60 * 60 * 1000 // 24 hours
     }
   })
 );

@@ -9,17 +9,21 @@ router.get('/google', passport.authenticate('google', {
   accessType: 'online'
 }));
 
-// Google OAuth callback with error handling
+// Google OAuth callback with improved error handling
 router.get(
   '/google/callback',
   (req, res, next) => {
     passport.authenticate('google', { 
-      failureRedirect: 'https://idealab-zeta.vercel.app/login',
+      failureRedirect: 'https://idealab-zeta.vercel.app/login?error=auth_failed',
       session: true
     })(req, res, (err) => {
       if (err) {
         console.error('Google OAuth Error:', err);
         return res.redirect('https://idealab-zeta.vercel.app/login?error=auth_failed');
+      }
+      if (!req.user) {
+        console.error('No user found after authentication');
+        return res.redirect('https://idealab-zeta.vercel.app/login?error=no_user');
       }
       next();
     });
@@ -34,8 +38,16 @@ router.get(
         maxAge: 24 * 60 * 60 * 1000 // 24 hours
       });
       
-      // Redirect to dashboard
-      res.redirect('https://idealab-zeta.vercel.app/dashboard');
+      // Set session cookie
+      res.cookie('connect.sid', req.sessionID, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none',
+        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+      });
+      
+      // Redirect to dashboard with a force reload
+      res.redirect('https://idealab-zeta.vercel.app/dashboard?auth=true');
     } catch (error) {
       console.error('Callback Error:', error);
       res.redirect('https://idealab-zeta.vercel.app/login?error=callback_failed');
