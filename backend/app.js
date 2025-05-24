@@ -41,12 +41,15 @@ app.use(
       mongoUrl: process.env.MONGODB_URI,
       ttl: 14 * 24 * 60 * 60, // 14 days
       autoRemove: 'native',
-      touchAfter: 24 * 3600 // 24 hours
+      touchAfter: 24 * 3600, // 24 hours
+      crypto: {
+        secret: process.env.SESSION_SECRET || "your-session-secret"
+      }
     }),
     cookie: {
-      secure: true, // Always true in production
+      secure: true,
       httpOnly: true,
-      sameSite: 'none', // Required for cross-domain cookies
+      sameSite: 'none',
       maxAge: 14 * 24 * 60 * 60 * 1000 // 14 days
     }
   })
@@ -77,6 +80,12 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+// Add error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Global Error:', err);
+  res.status(500).json({ error: 'Internal server error' });
 });
 
 // Update MongoDB connection with proper options
