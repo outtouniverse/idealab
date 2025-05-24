@@ -1,28 +1,23 @@
 import React, { useEffect } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 function LoginPage({ onLogin }) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    // Check if user is already authenticated
-    fetch("https://idealab-ax37.vercel.app/auth/user", {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.user) {
-          navigate("/dashboard");
-        }
-      })
-      .catch(() => {
-        // Handle error
-      });
-  }, [navigate]);
+    // Check for token in URL
+    const params = new URLSearchParams(location.search);
+    const token = params.get('token');
+    if (token) {
+      // Store token in localStorage
+      localStorage.setItem('authToken', token);
+      navigate('/dashboard');
+    }
+  }, [location, navigate]);
 
   const handleGoogleLogin = () => {
-    // Use the full URL to ensure proper redirection
     window.location.href = "https://idealab-ax37.vercel.app/auth/google";
   };
 

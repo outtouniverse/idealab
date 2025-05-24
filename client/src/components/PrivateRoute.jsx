@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
 
-const PrivateRoute = ({ isAuthenticated, children }) => {
-  if (!isAuthenticated) {
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem('authToken');
+  
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
 

@@ -8,13 +8,21 @@ export default function DashboardPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
+    // Verify token with backend
     fetch("https://idealab-ax37.vercel.app/auth/user", {
-      credentials: "include",
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log('Auth response:', data);
-        if (data && data.user) {
+        if (data.user) {
           setUser(data.user);
           // Fetch recent IdeaLabs after user is authenticated
           fetch("https://idealab-ax37.vercel.app/idealab/recent", {
@@ -28,13 +36,14 @@ export default function DashboardPage() {
             })
             .catch((err) => console.error("Failed to fetch recent IdeaLabs:", err));
         } else {
-          console.log('No user data, redirecting to login');
-          window.location.replace("https://idealab-zeta.vercel.app/login");
+          localStorage.removeItem('authToken');
+          navigate('/login');
         }
       })
       .catch((error) => {
         console.error('Auth error:', error);
-        window.location.replace("https://idealab-zeta.vercel.app/login");
+        localStorage.removeItem('authToken');
+        navigate('/login');
       })
       .finally(() => setLoading(false));
   }, [navigate]);
@@ -49,7 +58,7 @@ export default function DashboardPage() {
   };
 
   if (loading) return <div>Loading...</div>;
-  if (!user) return null; // Will redirect to login
+  if (!user) return null;
 
   return (
     <div className="min-h-screen bg-black text-white p-8">

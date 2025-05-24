@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 // Start Google OAuth
@@ -12,50 +13,25 @@ router.get('/google', passport.authenticate('google', {
 // Google OAuth callback
 router.get(
   '/google/callback',
-  (req, res, next) => {
-    passport.authenticate('google', { 
-      failureRedirect: 'https://idealab-zeta.vercel.app/login?error=auth_failed',
-      session: true
-    })(req, res, (err) => {
-      if (err) {
-        console.error('Google OAuth Error:', err);
-        return res.redirect('https://idealab-zeta.vercel.app/login?error=auth_failed');
-      }
-      if (!req.user) {
-        console.error('No user found after authentication');
-        return res.redirect('https://idealab-zeta.vercel.app/login?error=no_user');
-      }
-      next();
-    });
-  },
+  passport.authenticate('google', { 
+    failureRedirect: 'https://idealab-zeta.vercel.app/login?error=auth_failed',
+    session: false // Disable session
+  }),
   (req, res) => {
     try {
-      // Set session cookie
-      res.cookie('connect.sid', req.sessionID, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'lax',
-        maxAge: 24 * 60 * 60 * 1000
-      });
+      // Generate JWT token
+      const token = jwt.sign(
+        { 
+          id: req.user.id,
+          email: req.user.email,
+          displayName: req.user.displayName
+        },
+        process.env.JWT_SECRET || 'your-jwt-secret',
+        { expiresIn: '24h' }
+      );
 
-      // Set auth cookie
-      res.cookie('auth', 'true', {
-        httpOnly: false,
-        secure: true,
-        sameSite: 'lax',
-        maxAge: 24 * 60 * 60 * 1000
-      });
-
-      // Force a session save
-      req.session.save((err) => {
-        if (err) {
-          console.error('Session save error:', err);
-          return res.redirect('https://idealab-zeta.vercel.app/login?error=session_failed');
-        }
-        
-        // Redirect to dashboard
-        res.redirect('https://idealab-zeta.vercel.app/dashboard');
-      });
+      // Redirect to dashboard with token
+      res.redirect(`https://idealab-zeta.vercel.app/dashboard?token=${token}`);
     } catch (error) {
       console.error('Callback Error:', error);
       res.redirect('https://idealab-zeta.vercel.app/login?error=callback_failed');
@@ -66,14 +42,15 @@ router.get(
 // Add a route to check authentication status
 router.get('/user', (req, res) => {
   try {
-    if (req.isAuthenticated()) {
-      res.json({ user: req.user });
-    } else {
-      res.json({ user: null });
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.json({ user: null });
     }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-jwt-secret');
+    res.json({ user: decoded });
   } catch (error) {
-    console.error('Auth Check Error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.json({ user: null });
   }
 });
 
