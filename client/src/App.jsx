@@ -28,7 +28,7 @@ function App() {
       .then((data) => {
         setIsAuthenticated(!!data.user);
         if (data.user) {
-          window.location.href = "https://idealab-zeta.vercel.app/dashboard";
+          window.location.replace("https://idealab-zeta.vercel.app/dashboard");
         }
       })
       .catch(() => {
@@ -40,7 +40,7 @@ function App() {
   }, [navigate]);
 
   const handleLogin = () => {
-    window.location.assign("https://idealab-ax37.vercel.app/auth/google");
+    window.location.replace("https://idealab-ax37.vercel.app/auth/google");
   };
 
   const handleLogout = async () => {

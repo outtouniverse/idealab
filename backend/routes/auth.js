@@ -21,12 +21,12 @@ router.get(
     res.cookie('auth', 'true', {
       httpOnly: false,
       secure: true,
-      sameSite: 'lax',
+      sameSite: 'none',
       maxAge: 24 * 60 * 60 * 1000 // 24 hours
     });
     
-    // Redirect to dashboard
-    res.redirect('https://idealab-zeta.vercel.app/dashboard');
+    // Redirect to dashboard with a force reload
+    res.redirect('https://idealab-zeta.vercel.app/dashboard?auth=true');
   }
 );
 

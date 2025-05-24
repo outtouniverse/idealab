@@ -13,7 +13,7 @@ function LoginPage({ onLogin }) {
       .then((res) => res.json())
       .then((data) => {
         if (data.user) {
-          window.location.href = "https://idealab-zeta.vercel.app/dashboard";
+          window.location.replace("https://idealab-zeta.vercel.app/dashboard");
         }
       })
       .catch(() => {
@@ -23,7 +23,7 @@ function LoginPage({ onLogin }) {
 
   const handleGoogleLogin = () => {
     // Redirect to Express backend to trigger Google OAuth
-    window.location.assign("https://idealab-ax37.vercel.app/auth/google");
+    window.location.replace("https://idealab-ax37.vercel.app/auth/google");
   };
 
   return (
