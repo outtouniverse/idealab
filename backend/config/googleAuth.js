@@ -6,7 +6,8 @@ const baseUrl = isProduction
   : 'http://localhost:3000';
 
 module.exports = {
-  clientID: '703416968026-2v4ntp1vhgo2advhjb84a1bret53rq6b.apps.googleusercontent.com',
+  clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: `${baseUrl}/auth/google/callback`,
+  proxy: true // Add this to handle proxy headers
 };

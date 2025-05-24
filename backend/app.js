@@ -34,18 +34,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Session middleware
 app.use(
   session({
-    secret:"your-session-secret",
+    secret: process.env.SESSION_SECRET || "your-session-secret",
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl: "mongodb+srv://aakub1096:0ElXJBUfvDRIGfhV@cluster0.f7veylt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+      mongoUrl: process.env.MONGODB_URI,
       ttl: 14 * 24 * 60 * 60, // 14 days
       autoRemove: 'native',
       touchAfter: 24 * 3600 // 24 hours
     }),
     cookie: {
-      secure: process.env.NODE_ENV === 'production',
+      secure: true, // Always true in production
       httpOnly: true,
+      sameSite: 'none', // Required for cross-domain cookies
       maxAge: 14 * 24 * 60 * 60 * 1000 // 14 days
     }
   })

@@ -22,6 +22,7 @@ function LoginPage({ onLogin }) {
   }, [navigate]);
 
   const handleGoogleLogin = () => {
+    // Use the full URL to ensure proper redirection
     window.location.href = "https://idealab-ax37.vercel.app/auth/google";
   };
 
