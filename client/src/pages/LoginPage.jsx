@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
-function LoginPage() {
+function LoginPage({ onLogin }) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if user is already authenticated
+    fetch("https://idealab-ax37.vercel.app/auth/user", {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.user) {
+          navigate('/dashboard');
+        }
+      })
+      .catch(console.error);
+  }, [navigate]);
+
   const handleGoogleLogin = () => {
-    // Direct redirect to Google OAuth
-    window.location.href = "https://idealab-ax37.vercel.app/auth/google";
+    // Store the intended destination
+    sessionStorage.setItem('redirectAfterLogin', '/dashboard');
+    onLogin();
   };
 
   return (

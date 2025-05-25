@@ -27,6 +27,11 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setIsAuthenticated(!!data.user);
+        if (data.user) {
+          const redirectPath = sessionStorage.getItem('redirectAfterLogin') || '/dashboard';
+          sessionStorage.removeItem('redirectAfterLogin');
+          navigate(redirectPath);
+        }
       })
       .catch(() => {
         setIsAuthenticated(false);

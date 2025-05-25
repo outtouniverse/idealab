@@ -13,11 +13,10 @@ router.get('/google', passport.authenticate('google', {
 router.get(
   '/google/callback',
   passport.authenticate('google', { 
-    failureRedirect: 'https://idealab-zeta.vercel.app/login?error=auth_failed',
-    session: true
+    failureRedirect: '/login'
   }),
   (req, res) => {
-    // Simply redirect to dashboard
+    // Redirect to the frontend with a success parameter
     res.redirect('https://idealab-zeta.vercel.app/dashboard');
   }
 );
