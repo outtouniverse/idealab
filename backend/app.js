@@ -20,8 +20,12 @@ app.use(cors({
   origin: ['https://idealab-zeta.vercel.app', 'http://localhost:5173'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+  exposedHeaders: ['set-cookie']
 }));
+
+// At the top of the file, after require statements
+const MONGODB_URI = "mongodb+srv://aakub1096:0ElXJBUfvDRIGfhV@cluster0.f7veylt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,7 +44,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl:"mongodb+srv://aakub1096:0ElXJBUfvDRIGfhV@cluster0.f7veylt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+      mongoUrl: MONGODB_URI,
       ttl: 14 * 24 * 60 * 60
     }),
     cookie: {
@@ -85,7 +89,9 @@ app.use((err, req, res, next) => {
 });
 
 // Update MongoDB connection with proper options
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
   maxPoolSize: 10,
@@ -115,11 +121,13 @@ mongoose.connection.on('disconnected', () => {
   console.log('MongoDB disconnected');
 });
 
-// Add reconnection logic
+// Update the reconnection logic
 mongoose.connection.on('disconnected', () => {
   console.log('MongoDB disconnected, attempting to reconnect...');
   setTimeout(() => {
-    mongoose.connect(process.env.MONGODB_URI, {
+    mongoose.connect(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,
       maxPoolSize: 10,
