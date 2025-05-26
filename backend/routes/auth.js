@@ -16,17 +16,31 @@ router.get(
     failureRedirect: '/login'
   }),
   (req, res) => {
+    // Set a cookie to indicate successful login
+    res.cookie('auth_success', 'true', {
+      httpOnly: false,
+      secure: true,
+      sameSite: 'none',
+      maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    });
+    
     // Redirect to the frontend dashboard
     res.redirect('https://idealab-zeta.vercel.app/dashboard');
   }
 );
 
-// Add a route to check authentication status
+// Update the user route to be more explicit
 router.get('/user', (req, res) => {
   if (req.isAuthenticated()) {
-    res.json({ user: req.user });
+    res.json({ 
+      user: req.user,
+      isAuthenticated: true 
+    });
   } else {
-    res.json({ user: null });
+    res.json({ 
+      user: null,
+      isAuthenticated: false 
+    });
   }
 });
 

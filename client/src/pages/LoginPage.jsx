@@ -1,16 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 
 function LoginPage({ onLogin }) {
-  const navigate = useNavigate();
-
-  const handleGoogleLogin = () => {
-    // Store the intended destination
-    sessionStorage.setItem('redirectAfterLogin', '/dashboard');
-    onLogin();
-  };
-
   return (
     <div className="min-h-screen bg-black text-white flex">
       {/* Left Section */}
@@ -38,7 +29,7 @@ function LoginPage({ onLogin }) {
           </p>
 
           <button
-            onClick={handleGoogleLogin}
+            onClick={onLogin}
             className="w-full flex items-center justify-center px-4 py-3 border rounded shadow-sm text-base font-regular text-white bg-black border-white/10 hover:bg-gray-900/50 duration-300 ease-in-out"
           >
             <FcGoogle className="w-6 h-6 mr-2" />

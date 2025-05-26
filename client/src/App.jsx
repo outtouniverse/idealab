@@ -19,26 +19,29 @@ function App() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Check authentication status when the app loads
-    fetch("https://idealab-ax37.vercel.app/auth/user", {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setIsAuthenticated(!!data.user);
-        if (data.user) {
-          const redirectPath = sessionStorage.getItem('redirectAfterLogin') || '/dashboard';
-          sessionStorage.removeItem('redirectAfterLogin');
-          navigate(redirectPath);
-        }
-      })
-      .catch(() => {
-        setIsAuthenticated(false);
-      })
-      .finally(() => {
-        setLoading(false);
+  const checkAuth = async () => {
+    try {
+      const response = await fetch("https://idealab-ax37.vercel.app/auth/user", {
+        credentials: "include",
       });
+      const data = await response.json();
+      
+      if (data.isAuthenticated && data.user) {
+        setIsAuthenticated(true);
+        navigate('/dashboard');
+      } else {
+        setIsAuthenticated(false);
+      }
+    } catch (error) {
+      console.error('Auth check failed:', error);
+      setIsAuthenticated(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    checkAuth();
   }, [navigate]);
 
   const handleLogin = () => {
@@ -99,9 +102,11 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                <PrivateRoute isAuthenticated={isAuthenticated}>
+                isAuthenticated ? (
                   <DashboardPage />
-                </PrivateRoute>
+                ) : (
+                  <Navigate to="/login" replace />
+                )
               }
             />
             <Route
