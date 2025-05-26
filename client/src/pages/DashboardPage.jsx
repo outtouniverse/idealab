@@ -9,7 +9,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     // Check authentication status
-    fetch("https://idealab-ax37.vercel.app/auth/user", {
+    fetch("https://idealab-beta2.vercel.app/auth/user", {
       credentials: "include"
     })
       .then((res) => res.json())
@@ -17,7 +17,7 @@ export default function DashboardPage() {
         if (data.user) {
           setUser(data.user);
           // Fetch recent IdeaLabs after user is authenticated
-          fetch("https://idealab-ax37.vercel.app/idealab/recent", {
+          fetch("https://idealab-beta2.vercel.app/idealab/recent", {
             credentials: "include",
           })
             .then((res) => res.json())
@@ -39,7 +39,7 @@ export default function DashboardPage() {
   }, [navigate]);
 
   const createIdealab = () => {
-    fetch('https://idealab-ax37.vercel.app/idealab/new', {
+    fetch('https://idealab-beta2.vercel.app/idealab/new', {
       method: 'POST',
       credentials: 'include',
     })

@@ -7,7 +7,7 @@ function SignupPage() {
 
   const handleGoogleSignup = () => {
     console.log("Simulating Google Sign-Up...");
-    window.location.href = "https://idealab-zeta.vercel.app/dashboard";
+    window.location.href = "https://idealab-beta.vercel.app/dashboard";
   };
 
   return (

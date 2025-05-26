@@ -8,14 +8,14 @@ function DashboardNav({ onLogout }) {
   
   const handleLogout = async () => {
     try {
-      const response = await fetch("https://idealab-ax37.vercel.app/auth/logout", {
+      const response = await fetch("https://idealab-beta2.vercel.app/auth/logout", {
         method: "POST",
         credentials: "include",
       });
       
       if (response.ok) {
         onLogout();
-        window.location.href = "https://idealab-zeta.vercel.app/login";
+        window.location.href = "https://idealab-beta.vercel.app/login";
       } else {
         console.error("Logout failed");
       }

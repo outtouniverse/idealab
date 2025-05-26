@@ -12,7 +12,7 @@ async function initializePassport(passport) {
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://idealab-ax37.vercel.app/auth/google/callback",
+      callbackURL: "https://idealab-beta2.vercel.app/auth/google/callback",
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {

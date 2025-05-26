@@ -17,7 +17,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();// Allow requests from your frontend, and allow credentials (cookies)
 app.use(cors({
-  origin: ['https://idealab-zeta.vercel.app', 'http://localhost:5173'],
+  origin: ['https://idealab-beta.vercel.app', 'http://localhost:5173'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],

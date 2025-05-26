@@ -21,7 +21,7 @@ function App() {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch("https://idealab-ax37.vercel.app/auth/user", {
+      const response = await fetch("https://idealab-beta2.vercel.app/auth/user", {
         credentials: "include",
       });
       const data = await response.json();
@@ -45,12 +45,12 @@ function App() {
   }, [navigate]);
 
   const handleLogin = () => {
-    window.location.href = "https://idealab-ax37.vercel.app/auth/google";
+    window.location.href = "https://idealab-beta2.vercel.app/auth/google";
   };
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("https://idealab-ax37.vercel.app/auth/logout", {
+      const response = await fetch("https://idealab-beta2.vercel.app/auth/logout", {
         method: "POST",
         credentials: "include",
       });

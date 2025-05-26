@@ -26,7 +26,7 @@ function FinancialInputsForm() {
     e.preventDefault();
     // Store financialInputs in localStorage or sessionStorage
     localStorage.setItem("financialInputs", JSON.stringify(financialInputs));
-    window.location.href = "https://idealab-zeta.vercel.app/dashboard";
+    window.location.href = "https://idealab-beta.vercel.app/dashboard";
   };
 
   return (

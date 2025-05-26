@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const isProduction = process.env.NODE_ENV === 'production';
 const baseUrl = isProduction 
-  ? 'https://idealab-ax37.vercel.app'  // Your Vercel backend URL
+  ? 'https://idealab-beta2.vercel.app'  // Your Vercel backend URL
   : 'http://localhost:3000';
 
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
