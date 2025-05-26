@@ -25,8 +25,7 @@ app.use(cors({
 }));
 
 // At the top of the file, after require statements
-const MONGODB_URI ="=mongodb+srv://aakub1096:BTUeWtE0SoJRJ1PB@cluster0.giyplgo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
+const MONGODB_URI ="mongodb+srv://aakub1096:<db_password>@cluster0.giyplgo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
