@@ -21,33 +21,32 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: googleAuth.clientID,
-      clientSecret: googleAuth.clientSecret,
-      callbackURL: googleAuth.callbackURL,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "https://idealab-ax37.vercel.app/auth/google/callback",
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        console.log('Google Profile:', profile); // Debug log
-        
-        // Try to find the user
+        // Check if user already exists
         let user = await User.findOne({ googleId: profile.id });
-        
-        if (!user) {
-          // If not found, create a new user
-          user = await User.create({
-            googleId: profile.id,
-            displayName: profile.displayName,
-            email: profile.emails[0].value,
-            photo: profile.photos[0].value,
-          });
-          console.log('New user created:', user); // Debug log
+
+        if (user) {
+          return done(null, user);
         }
-        
+
+        // If not, create new user
+        user = await User.create({
+          googleId: profile.id,
+          name: profile.displayName,
+          email: profile.emails[0].value,
+          picture: profile.photos[0].value
+        });
+
         return done(null, user);
-      } catch (err) {
-        console.error('Google Strategy Error:', err);
-        return done(err, null);
+      } catch (error) {
+        console.error('Error in Google Strategy:', error);
+        return done(error, null);
       }
     }
   )

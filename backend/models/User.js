@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  displayName: {
+  name: {
     type: String,
     required: true
   },
@@ -15,7 +15,9 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  photo: String,
+  picture: {
+    type: String
+  },
   createdAt: {
     type: Date,
     default: Date.now

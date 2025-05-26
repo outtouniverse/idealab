@@ -25,7 +25,83 @@ app.use(cors({
 }));
 
 // At the top of the file, after require statements
-const MONGODB_URI ="mongodb+srv://aakub1096:BTUeWtE0SoJRJ1PB@cluster0.giyplgo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const MONGODB_URI = "mongodb+srv://aakub1096:0ElXJBUfvDRIGfhV@cluster0.f7veylt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+// Create a function to initialize the app
+async function initializeApp() {
+  try {
+    // Connect to MongoDB first
+    await mongoose.connect(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 30000,
+      socketTimeoutMS: 45000,
+      maxPoolSize: 10,
+      minPoolSize: 5,
+      retryWrites: true,
+      w: 'majority',
+      ssl: true,
+      tls: true,
+      tlsAllowInvalidCertificates: true,
+      tlsAllowInvalidHostnames: true,
+      directConnection: false,
+      replicaSet: 'atlas-9vcknn-shard-0',
+      authSource: 'admin',
+      retryReads: true,
+      family: 4
+    });
+    console.log('MongoDB connected successfully');
+
+    // Initialize passport after MongoDB connection
+    require('./config/passport')(passport);
+
+    // Set up session middleware
+    app.use(
+      session({
+        secret: process.env.SESSION_SECRET || "your-session-secret",
+        resave: false,
+        saveUninitialized: false,
+        store: MongoStore.create({
+          mongoUrl: MONGODB_URI,
+          ttl: 14 * 24 * 60 * 60,
+          autoRemove: 'native',
+          touchAfter: 24 * 3600,
+          crypto: {
+            secret: process.env.SESSION_SECRET || "your-session-secret"
+          }
+        }),
+        cookie: {
+          secure: true,
+          httpOnly: true,
+          maxAge: 24 * 60 * 60 * 1000,
+          sameSite: 'none'
+        }
+      })
+    );
+
+    // Initialize passport middleware
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    // Set up routes
+    app.use('/auth', require('./routes/auth'));
+    app.use('/api', require('./routes/api'));
+
+    // Start the server
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+
+  } catch (error) {
+    console.error('Failed to initialize app:', error);
+    process.exit(1);
+  }
+}
+
+// Start the app
+initializeApp();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -35,28 +111,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Session middleware
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || "your-session-secret",
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: MONGODB_URI,
-      ttl: 14 * 24 * 60 * 60
-    }),
-    cookie: {
-      secure: true,
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000
-    }
-  })
-);
-
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
 
 // Auth routes
 app.use('/auth', authRoutes);
@@ -86,16 +140,5 @@ app.use((err, req, res, next) => {
   console.error('Global Error:', err);
   res.status(500).json({ error: 'Internal server error' });
 });
-
-mongoose.connect(MONGODB_URI)
-  .then(() => {
-    console.log('✅ Connected to MongoDB');
-  })
-  .catch((err) => {
-    console.error('❌ MongoDB connection error:', err);
-    process.exit(1); // Stop the server if DB connection fails
-  });
-
-// Add connection error handling
 
 module.exports = app;
