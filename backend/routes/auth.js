@@ -25,9 +25,9 @@ router.get(
       sameSite: 'none',
       maxAge: 24 * 60 * 60 * 1000 // 24 hours
     });
-    
+
     // Redirect to the frontend dashboard
-    res.redirect('https://idealab-beta.vercel.app/dashboard');
+    res.redirect('https://idealab-zeta.vercel.app/dashboard');
   }
 );
 
