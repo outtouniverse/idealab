@@ -2,18 +2,20 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
-// Start Google OAuth
-router.get('/google', passport.authenticate('google', { 
-  scope: ['profile', 'email'],
-  prompt: 'select_account',
-  accessType: 'online'
-}));
+// Google OAuth routes
+router.get(
+  '/google',
+  passport.authenticate('google', { 
+    scope: ['profile', 'email'],
+    prompt: 'select_account'
+  })
+);
 
-// Google OAuth callback
 router.get(
   '/google/callback',
   passport.authenticate('google', { 
-    failureRedirect: '/login'
+    failureRedirect: '/login',
+    session: true
   }),
   (req, res) => {
     // Set a cookie to indicate successful login
@@ -29,7 +31,7 @@ router.get(
   }
 );
 
-// Update the user route to be more explicit
+// User route
 router.get('/user', (req, res) => {
   if (req.isAuthenticated()) {
     res.json({ 
@@ -42,6 +44,18 @@ router.get('/user', (req, res) => {
       isAuthenticated: false 
     });
   }
+});
+
+// Logout route
+router.post('/logout', (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error logging out' });
+    }
+    res.clearCookie('connect.sid');
+    res.clearCookie('auth_success');
+    res.json({ message: 'Logged out successfully' });
+  });
 });
 
 module.exports = router;

@@ -53,7 +53,8 @@ async function initializeApp() {
     console.log('MongoDB connected successfully');
 
     // Initialize passport after MongoDB connection
-    require('./config/passport')(passport);
+    const initializePassport = require('./config/passport');
+    await initializePassport(passport);
 
     // Set up session middleware
     app.use(
