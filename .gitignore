@@ -10,3 +10,5 @@ backend/node_modules/.bin/mime
 backend/node_modules/@mongodb-js/saslprep/LICENSE
 backend/node_modules/.bin/mime.ps1
 
+backend/package-lock.json
+backend/package.json
