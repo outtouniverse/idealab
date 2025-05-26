@@ -94,6 +94,19 @@ async function initializeApp() {
       console.log(`Server is running on port ${PORT}`);
     });
 
+    // Add this after mongoose.connect
+    mongoose.connection.on('error', (err) => {
+      console.error('MongoDB connection error:', err);
+    });
+
+    mongoose.connection.on('disconnected', () => {
+      console.log('MongoDB disconnected');
+    });
+
+    mongoose.connection.on('connected', () => {
+      console.log('MongoDB connected');
+    });
+
   } catch (error) {
     console.error('Failed to initialize app:', error);
     process.exit(1);
@@ -138,8 +151,11 @@ app.use(function(err, req, res, next) {
 
 // Add error handling middleware
 app.use((err, req, res, next) => {
-  console.error('Global Error:', err);
-  res.status(500).json({ error: 'Internal server error' });
+  console.error('Global error handler caught:', err);
+  res.status(500).json({
+    error: 'Internal server error',
+    message: err.message
+  });
 });
 
 module.exports = app;
