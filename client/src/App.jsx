@@ -55,8 +55,6 @@ function App() {
       if (response.ok) {
         setIsAuthenticated(false);
         navigate("/login");
-      } else {
-        console.error("Logout failed");
       }
     } catch (error) {
       console.error("Logout error:", error);

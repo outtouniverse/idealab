@@ -1,24 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 function LoginPage({ onLogin }) {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Check if user is already authenticated
-    fetch("https://idealab-ax37.vercel.app/auth/user", {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.user) {
-          navigate('/dashboard');
-        }
-      })
-      .catch(console.error);
-  }, [navigate]);
 
   const handleGoogleLogin = () => {
     // Store the intended destination
@@ -59,16 +44,6 @@ function LoginPage({ onLogin }) {
             <FcGoogle className="w-6 h-6 mr-2" />
             Login with Google
           </button>
-
-          <p className="mt-6 text-center text-sm text-gray-400">
-            Don't have an account?{" "}
-            <Link
-              to="/signup"
-              className="font-medium text-indigo-500 hover:text-indigo-400"
-            >
-              Sign up
-            </Link>
-          </p>
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ router.get(
     failureRedirect: '/login'
   }),
   (req, res) => {
-    // Redirect to the frontend with a success parameter
+    // Redirect to the frontend dashboard
     res.redirect('https://idealab-zeta.vercel.app/dashboard');
   }
 );
